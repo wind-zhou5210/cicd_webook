@@ -2,7 +2,7 @@ let http = require("http");
 let crypto = require("crypto");
 var spawn = require("child_process").spawn;
 // let sendMail = require("./sendMail");
-const SECRET = "123456";
+const SECRET = "windzhou";
 function sign(data) {
   return "sha1=" + crypto.createHmac("sha1", SECRET).update(data).digest("hex");
 }
@@ -26,6 +26,7 @@ let server = http.createServer(function (req, res) {
       //===========分割线===================
       if (event === "push") {
         let payload = JSON.parse(body);
+        // 判断选择那个构建脚本
         let child = spawn("sh", [`./${payload.repository.name}.sh`]);
         let buffers = [];
         child.stdout.on("data", function (buffer) {
