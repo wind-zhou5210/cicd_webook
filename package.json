@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "pm2 start ./webhook.js --watch --name='cicd-webhook'",
-    "stop": "pm2 stop vue-webhook"
+    "stop": "pm2 stop cicd-webhook"
   },
   "author": "",
   "license": "ISC",

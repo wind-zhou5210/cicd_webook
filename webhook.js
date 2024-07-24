@@ -7,7 +7,7 @@ function sign(data) {
   return "sha1=" + crypto.createHmac("sha1", SECRET).update(data).digest("hex");
 }
 let server = http.createServer(function (req, res) {
-  console.log(req.method, req.url);
+  console.log(req.method, req.url, req.headers);
   if (req.url == "/webhook" && req.method == "POST") {
     let buffers = [];
     req.on("data", function (data) {
@@ -18,6 +18,8 @@ let server = http.createServer(function (req, res) {
       let sig = req.headers["x-hub-signature"];
       let event = req.headers["x-github-event"];
       let id = req.headers["x-github-delivery"];
+      console.log(body, sig, event, id);
+      console.log(sig, sign(body));
       if (sig !== sign(body)) {
         return res.end("Not Allowed");
       }
