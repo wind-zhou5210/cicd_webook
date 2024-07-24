@@ -32,7 +32,7 @@ let server = http.createServer(function (req, res) {
         let child = spawn("sh", [`./${payload.repository.name}.sh`]);
         let buffers = [];
         child.stdout.on("data", function (buffer) {
-          console.log(`stdout: ${data}`);
+          console.log(`stdout: ${buffer}`);
           buffers.push(buffer);
         });
         child.stdout.on("end", function () {
