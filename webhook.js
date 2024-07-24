@@ -1,6 +1,7 @@
 let http = require("http");
 let crypto = require("crypto");
 var spawn = require("child_process").spawn;
+const chalk = require("chalk");
 // let sendMail = require("./sendMail");
 const SECRET = "windzhou";
 function sign(data) {
